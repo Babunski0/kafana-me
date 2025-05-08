@@ -1,0 +1,7 @@
+# Sprečava prikaz listinga fajlova
+Options -Indexes
+
+# Onemogući izvršavanje PHP (i ostalih skripta) iz uploads
+<FilesMatch "\.(php|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+  Require all denied
+</FilesMatch>
