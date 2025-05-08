@@ -76,21 +76,22 @@ class Dashboard extends BaseController
                         ->with('success', 'Uspešno rezervisano mesto.');
     }
 
-    public function checkReservation(int $id)
+    public function checkReservation(int $restaurantId)
     {
         if (! session()->get('isLoggedIn')) {
-            return $this->response
-                        ->setStatusCode(401)
-                        ->setJSON(['error' => 'Niste prijavljeni.']);
+            return $this->response->setStatusCode(401);
         }
 
         $userId = session()->get('user_id');
-        $exists = (bool) (new ReservationModel())
-            ->where('user_id', $userId)
-            ->where('restaurant_id', $id)
-            ->first();
+        $rModel = new \App\Models\ReservationModel();
 
-        return $this->response->setJSON(['exists' => $exists]);
+        $exists = $rModel
+            ->where('user_id', $userId)
+            ->where('restaurant_id', $restaurantId)
+            ->first() !== null;
+
+        return $this->response
+                    ->setJSON(['exists' => $exists]);
     }
 
 

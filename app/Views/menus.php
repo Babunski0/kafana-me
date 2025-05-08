@@ -2,9 +2,9 @@
 
 <main class="container">
 
-  <h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem;">Prikaz menija dostupnih restorana</h1>
+  <h2 class="page-title" style="text-align:center; margin:1.4rem 0; font-size:2.5rem;">Prikaz menija dostupnih restorana</h2>
   
-  <h2 style="text-align:center; margin:1.5rem 0; font-size:1.5rem;">Pozdrav, <?= esc($username) ?>! Klikni na naziv restorana da vidiš njegove kategorije:</h2>
+  <h4 style="text-align:center; margin:1.5rem 0; font-size:1.2rem;">Pozdrav, <?= esc($username) ?>! Klikni na naziv restorana da vidiš njegove kategorije:</h4>
 
   <?php 
     $order = ['Hladna predjela', 'Topla predjela', 'Ćorbe', 'Glavna jela', 'Dezerti'];
