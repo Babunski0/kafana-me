@@ -4,6 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+/**
+ * Model za rad sa korisnicima, registracija, autentifikacija
+ */
+
 class UserModel extends Model
 {
     protected $table      = 'users';

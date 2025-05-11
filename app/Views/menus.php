@@ -1,3 +1,5 @@
+<!-- Stranica koja prikazuje menije restorana po kategorijama (Hladna predjela, Topla predjela...)-->
+
 <?= view('templates/header', ['title' => 'Meniji']) ?>
 
 <main class="container">
@@ -6,6 +8,7 @@
   
   <h4 style="text-align:center; margin:1.5rem 0; font-size:1.2rem;">Pozdrav, <?= esc($username) ?>! Klikni na naziv restorana da vidiš njegove kategorije:</h4>
 
+  <!-- Grupisanje stavki menija po restoranima i kategorijama radi urednijeg prikaza -->
   <?php 
     $order = ['Hladna predjela', 'Topla predjela', 'Ćorbe', 'Glavna jela', 'Dezerti'];
     foreach ($menusByRestaurant as $mr):
@@ -27,6 +30,7 @@
       ">
         <?= esc($rest['name']) ?>
       </summary>
+    <!-- Prikaz svih stavki menija za dati restoran, ukoliko nema stavki ispisuje se poruka -->
       <div class="categories" style="padding:1rem 1.5rem;">
         <?php if (empty($grouped)): ?>
           <em style="color:#777;">Ovaj restoran još nema stavki menija.</em>

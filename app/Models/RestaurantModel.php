@@ -2,22 +2,23 @@
 
 use CodeIgniter\Model;
 
+/**
+ * Model za rad sa tabelom 'restaurants'
+ */
+
 class RestaurantModel extends Model
 {
     protected $table      = 'restaurants';
     protected $primaryKey = 'id';
 
-    // Dodaj sve kolone koje želiš da možeš masovno upisivati/updejtuješ
     protected $allowedFields = [
         'name',
         'cuisine',
         'capacity',
         'available',
-        'image',        // ako koristiš polje za sliku
-        'created_at',   // ako želiš
+        'image',        
+        'created_at',   
     ];
 
-    // Ako ti ne treba automatsko timestampovanje,
-    // možeš ga isključiti
     protected $useTimestamps = false;
 }

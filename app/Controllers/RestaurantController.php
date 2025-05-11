@@ -2,10 +2,15 @@
 
 use App\Models\RestaurantModel;
 
+/**
+ * Kontroler koji upravlja kreiranjem i brisanjem restorana
+ */
+
 class RestaurantController extends BaseController
 {
     protected $model;
 
+    //Konstruktor - ucitava model i form helper
     public function __construct()
     {
         $this->model = new RestaurantModel();
@@ -18,7 +23,7 @@ class RestaurantController extends BaseController
         return view('restaurants/create');
     }
 
-    // Čuvanje novog restorana
+    //Cuva podatke unijete iz forme i upisuje novi restoran u bazu
     public function store()
     {
         $data = $this->request->getPost([
@@ -29,7 +34,7 @@ class RestaurantController extends BaseController
         return redirect()->to('/restaurants')->with('success','Restoran dodat.');
     }
 
-    // Brisanje
+    //Brisanje restorana po ID-u
     public function delete($id)
     {
         $this->model->delete($id);

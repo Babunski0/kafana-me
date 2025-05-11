@@ -1,3 +1,4 @@
+<!-- Stranica za admin korisnike na kojoj se vide restorani kao i mogucnost brisanja i dodavanja istih -->
 <!DOCTYPE html>
 <html lang="sr">
 <head>
@@ -23,7 +24,7 @@
 
   <table>
     <thead><tr>
-      <th>#</th><th>Naziv</th><th>Kuhinja</th><th>Kapacitet</th><th>Slobodna mesta</th><th>Akcije</th>
+      <th>#</th><th>Naziv</th><th>Kuhinja</th><th>Kapacitet</th><th>Slobodna mjesta</th><th>Akcije</th>
     </tr></thead>
     <tbody>
     <?php foreach($restaurants as $r): ?>

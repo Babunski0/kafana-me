@@ -1,3 +1,4 @@
+<!-- Stranica za Admin usere na kojoj dodaju restoran-->
 <!DOCTYPE html>
 <html lang="sr">
 <head>
@@ -44,7 +45,7 @@
 <body>
     <h1 style="text-align:center;">Dodaj Novi Restoran</h1>
 
-    <!-- Prikaži greške validacije -->
+    <!-- Prikazi greske validacije -->
     <?php if ($errors = session()->getFlashdata('errors')): ?>
       <div class="error">
         <?php foreach ($errors as $err): ?>

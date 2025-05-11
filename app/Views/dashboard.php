@@ -1,7 +1,9 @@
+<!-- Pocetna stranica, vise marketinski prikaz -->
+
 <?= view('templates/header', ['title' => 'Početna – Kafana Projekat']) ?>
 
 <main class="container">
-  <!-- Naslov -->
+  
   <h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem;">Dobrodošli u kafanu</h1>
 
   <div class="section">
@@ -20,6 +22,8 @@
     >
   </div>
 
+
+    <!-- Sekcija koja sadrzi 3 restorana (poslednja dodata) -->
     <div class="section">
         <h2>Preporučeni restorani</h2>
         <div class="restaurant-list">
@@ -50,11 +54,10 @@
         </div>
     </div>
 
-    <!-- Nova sekcija za aktuelne događaje -->
+    <!-- Sekcija za aktuelne dogadjaje -->
     <div class="section events">
   <h2>Aktuelni događaji</h2>
   <div class="event-list">
-    <!-- Kartica 1 -->
     <div class="event-card">
       <img src="<?= base_url('images/svirka_uzivo.jpg') ?>" alt="Ambijent 1">
       <div class="info">
@@ -63,7 +66,6 @@
         <p><strong>Datum:</strong> 15. maj 2025.</p>
       </div>
     </div>
-    <!-- Kartica 2 -->
     <div class="event-card">
       <img src="<?= base_url('images/jazz.jpg') ?>" alt="Ambijent 2">
       <div class="info">
@@ -72,7 +74,6 @@
         <p><strong>Datum:</strong> 18. maj 2025.</p>
       </div>
     </div>
-    <!-- Kartica 3 -->
     <div class="event-card">
       <img src="<?= base_url('images/tamburaski_orkestar.jpg') ?>" alt="Ambijent 3">
       <div class="info">
@@ -85,12 +86,13 @@
 </div>
 
 
+    <!--Sekcija zasto da koristi neko ovaj sajt -->
     <div class="section">
         <h2>Zašto baš mi?</h2>
         <p>✔️ Jednostavno i brzo rezervisanje<br>
-           ✔️ Pregled slobodnih mesta u realnom vremenu<br>
-           ✔️ Ekskluzivne ponude i popusti<br>
-           ✔️ Autentična atmosfera i najbolja lokacija</p>
+           ✔️ Pregled slobodnih mjesta u realnom vremenu<br>
+           ✔️ Detaljan pregled menija i aktuelnih dogadjaja<br>
+           ✔️ Bezbjednost i pouzdanost</p>
     </div>
 
 <?= view('templates/footer') ?>

@@ -1,3 +1,5 @@
+<!-- Header za sve stranice u View-->
+
 <!DOCTYPE html>
 <html lang="sr">
 <head>
@@ -19,7 +21,7 @@
         <!-- Naslov -->
         <div class="site-branding">
             <h1>Kafana Projekat</h1>
-            <p>Doživite autentičnu atmosferu najboljih kafana</p>
+            <p><strong>Doživite autentičnu atmosferu najboljih kafana</strong></p>
         </div>
     </div>
 </header>

@@ -4,6 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+/**
+ * Model za upravljanje rezervacijama korisnika
+ */
+
 class ReservationModel extends Model
 {
     protected $table = 'reservations';

@@ -1,5 +1,8 @@
+<!-- Stranica na kojoj se vidi koje smo restorane rezervisali -->
+
 <?= view('templates/header', ['title' => 'Moje rezervacije']) ?>
 
+<!-- Naslov -->
 <main class="container" style="max-width:800px; margin:40px auto; background:#fff; padding:20px 30px; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.1);">
     <h1 style="margin-top:0; font-size:1.8em; color:#333;">Moje rezervacije</h1>
     <p class="greeting" style="margin-bottom:20px; color:#555;">
@@ -7,6 +10,7 @@
         Ovo su tvoje aktivne rezervacije:
     </p>
 
+    <!--Provjera da li ima rezervacija -->
     <?php if (empty($reservations)): ?>
         <p class="no-reservations" style="text-align:center; color:#777; padding:20px 0;">
             Trenutno nemaš nijednu rezervaciju.

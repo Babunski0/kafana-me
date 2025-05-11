@@ -4,25 +4,28 @@ use App\Models\RestaurantModel;
 use App\Models\MenuModel;
 use CodeIgniter\Controller;
 
+/**
+ * AdminMenus kontroler omogucava adminima upravljanje menijima restorana
+ */
+
 class AdminMenus extends Controller
 {
+    //Prikazuje listu svih restorana za koje moze da se upravlja menijima
     public function index()
     {
-        // lista restorana
         $restaurants = (new RestaurantModel())->findAll();
         return view('admin/menus/index', compact('restaurants'));
     }
 
+    //Prikazuje sve stavke menija za odredjeni restoran, stavke su grupisane po kategorijama
     public function show(int $restId)
     {
-        // sve stavke menija za restoran, grupisane po category
         $items = (new MenuModel())
             ->where('restaurant_id', $restId)
             ->orderBy('category','ASC')
             ->orderBy('item_name','ASC')
             ->findAll();
 
-        // grupiši PHP-om u [category => [stavka,...], ...]
         $grouped = [];
         foreach ($items as $i) {
             $grouped[$i['category']][] = $i;
@@ -34,17 +37,17 @@ class AdminMenus extends Controller
         ]);
     }
 
+    //Prikazuje formu za dodavanje nove stavke menija za odredjeni restoran
     public function addItem(int $restId)
     {
-        // prikaži formu, prosledi restaurant_id
         return view('admin/menus/addItem', [
             'restaurant' => (new RestaurantModel())->find($restId),
         ]);
     }
 
+    //Cuva novu stavku menija u bazu nakon validacije unosa
     public function saveItem(int $restId)
     {
-        // validacija...
         $rules = [
           'item_name'   => 'required',
           'price'       => 'required|decimal',
@@ -69,6 +72,7 @@ class AdminMenus extends Controller
                          ->with('success','Stavka je dodata.');
     }
 
+    //Brise jednu stavku menija na osnovu njenog ID-a
     public function deleteItem(int $restId, int $itemId)
     {
         (new MenuModel())->delete($itemId);

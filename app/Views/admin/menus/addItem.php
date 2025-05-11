@@ -1,3 +1,4 @@
+<!-- Dodavanje stavke u meniju-->
 <h1>Dodaj stavku u meni: <?= esc($restaurant['name']) ?></h1>
 <?php if($errors = session()->getFlashdata('errors')): ?>
   <ul style="color:red;">
@@ -10,7 +11,7 @@
   <?= csrf_field() ?>
   <label>Ime jela</label>
   <input type="text" name="item_name" value="<?= old('item_name') ?>">
-  <label>Cena (€)</label>
+  <label>Cijena (€)</label>
   <input type="text" name="price"     value="<?= old('price') ?>">
   <label>Kategorija</label>
   <select name="category">

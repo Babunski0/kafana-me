@@ -1,3 +1,4 @@
+<!-- Prikaz menija restorana (index stranica za menus admin)-->
 <h1>Upravljanje menijima – izaberite restoran</h1>
 <ul>
 <?php foreach($restaurants as $r): ?>

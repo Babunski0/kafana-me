@@ -4,13 +4,19 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
+/**
+ * Ovaj kontroler upravlja autentifikacijom korisnika
+ */
+
 class Auth extends BaseController
 {
+    //Prikazuje login formu
     public function login()
     {
         return view('auth/login');
     }
 
+    //Obradjuje podatke sa login forme i loguje korisnika ako su kredencijali ispravni
     public function loginPost()
     {
         $session = session();
@@ -31,15 +37,16 @@ class Auth extends BaseController
             return redirect()->to(base_url('dashboard'))->with('success', 'Uspešno ste se prijavili.');
         }
 
-        // Pogrešan username ili lozinka
         return redirect()->back()->withInput()->with('error', 'Pogrešan username ili lozinka.');
     }
 
+    //Prikazuje formu za registraciju
     public function register()
     {
         return view('auth/register');
     }
 
+    //Obradjuje podatke sa registracione forme i kreira novog korisnika
     public function registerPost()
     {
         $validation = \Config\Services::validation();
@@ -66,6 +73,7 @@ class Auth extends BaseController
     }
 
 
+    //Odjavljuje korisnika i unistava sesiju
     public function logout()
     {
         session()->destroy();

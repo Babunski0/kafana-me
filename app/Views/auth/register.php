@@ -1,3 +1,4 @@
+<!-- Stranica za registraciju korisnika-->
 <!DOCTYPE html>
 <html lang="sr">
 <head>

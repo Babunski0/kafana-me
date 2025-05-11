@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
 /** @var RouteCollection $routes */
 $routes = Services::routes();
 
-// Isključi auto-route
+// Iskljuci auto-route
 $routes->setAutoRoute(false);
 
 $routes->setDefaultNamespace('App\Controllers');
@@ -49,6 +49,6 @@ $routes->group('admin', function(RouteCollection $r){
     $r->get(  'menus/(:num)',              'AdminMenus::show/$1');
     $r->get(  'menus/(:num)/add',          'AdminMenus::addItem/$1');
     $r->post( 'menus/(:num)/add',          'AdminMenus::saveItem/$1');
-    // (opciono) brisanje stavke
+    
     $r->get(  'menus/(:num)/delete/(:num)', 'AdminMenus::deleteItem/$1/$2');
 });

@@ -2,8 +2,13 @@
 
 use App\Models\RestaurantModel;
 
+/**
+ * Kontroler za administratore restorana (prikazuje, dodaje, cuva u bazi, brise restorane)
+ */
+
 class Admin extends BaseController
 {
+    //Prikazuje listu svih restorana (admin role samo)
     public function index()
     {
         if (! session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
@@ -15,6 +20,7 @@ class Admin extends BaseController
         return view('admin/list', $data); 
     }
 
+    //Prikazuje formu za dodavanje novog restorana (admin role samo)
     public function add()
     {
         if (session()->get('role') !== 'admin') {
@@ -23,11 +29,11 @@ class Admin extends BaseController
         return view('admin/add');
     }
 
+    //Obradjuje POST zahtjev za dodavanje restorana, validacija unosa, cuva sliku i dodaje podatke u bazi.
     public function save()
     {
         helper(['form', 'url']);
 
-        // validacija (opciono: dodaj pravila za image)
         $validation = \Config\Services::validation();
         $validation->setRules([
             'name'     => 'required',
@@ -63,6 +69,7 @@ class Admin extends BaseController
 
 
 
+    //Brise restoran na osnovu ID-a (admin role samo)
     public function delete($id)
     {
         if (session()->get('role') !== 'admin') {

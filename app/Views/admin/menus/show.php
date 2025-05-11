@@ -1,3 +1,4 @@
+<!-- Stranica koja prikazuje stavke u meniju za restorane-->
 <h1>Meni za “<?= esc($restaurant['name']) ?>”</h1>
 <?php if(session()->get('success')): ?>
   <p style="color:green"><?= session()->get('success') ?></p>
@@ -8,7 +9,7 @@
   <?php foreach($grouped as $cat => $items): ?>
     <tr><th colspan="4"><?= esc($cat) ?></th></tr>
     <tr>
-      <th>Jelo</th><th>Cena (€)</th><th>Opis</th><th>Akcije</th>
+      <th>Jelo</th><th>Cijena (€)</th><th>Opis</th><th>Akcije</th>
     </tr>
     <?php foreach($items as $i): ?>
       <tr>
