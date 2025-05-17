@@ -2,13 +2,13 @@
 
 <?= view('templates/header', ['title' => 'Početna – Kafana Projekat']) ?>
 
-<main class="container">
+<main class="container" style="background: #cbd4dc">
   
-  <h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem;">Dobrodošli u kafanu</h1>
+  <h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem; color: #2c3e50">Dobrodošli u kafanu</h1>
 
   <div class="section">
-    <h2>O našoj ideji</h2>
-    <p>Kafana Projekat je osmišljen da spoji bogatu dušu tradicionalnih kafana sa brzim i jednostavnim onlajn rezervisanjem mjesta. 
+    <h2 style="color: #34495e">O našoj ideji</h2>
+    <p style="color: #5d6d7e">Kafana Projekat je osmišljen da spoji bogatu dušu tradicionalnih kafana sa brzim i jednostavnim onlajn rezervisanjem mjesta. 
       Naše rješenje donosi vam atmosferu starinskih drvenih stolova, živu muziku i miris domaće kuhinje, ali bez stresa oko telefonskih poziva i dužeg čekanja. 
       Bilo da želite da provedete prijatno veče uz zvuke tamburice, organizujete poslovni ručak ili proslavite posebnu priliku, 
       kod nas ćete u par klikova pronaći i rezervisati najbolji kutak. Pored pregleda slobodnih mesta u realnom vremenu, 
@@ -18,14 +18,14 @@
     <img 
       src="<?= base_url('images/photo1.jpg') ?>" 
       alt="Atmosfera kafane" 
-      style="max-width:100%; height:auto; display:block; margin:1rem auto;"
+      style="max-width:100%; height:75vh; min-height:120px; display:block; margin:1rem auto; border-radius: 16px;"
     >
   </div>
 
 
     <!-- Sekcija koja sadrzi 3 restorana (poslednja dodata) -->
     <div class="section">
-        <h2>Preporučeni restorani</h2>
+        <h2 style="color: #34495e">Preporučeni restorani</h2>
         <div class="restaurant-list">
             <?php if (empty($restaurants)): ?>
               <p>Još nema restorana za preporuku.</p>
@@ -56,7 +56,7 @@
 
     <!-- Sekcija za aktuelne dogadjaje -->
     <div class="section events">
-  <h2>Aktuelni događaji</h2>
+  <h2 style="color: #34495e">Aktuelni događaji</h2>
   <div class="event-list">
     <div class="event-card">
       <img src="<?= base_url('images/svirka_uzivo.jpg') ?>" alt="Ambijent 1">
@@ -88,8 +88,8 @@
 
     <!--Sekcija zasto da koristi neko ovaj sajt -->
     <div class="section">
-        <h2>Zašto baš mi?</h2>
-        <p>✔️ Jednostavno i brzo rezervisanje<br>
+        <h2 style="color: #34495e">Zašto baš mi?</h2>
+        <p style="color: #5d6d7e">✔️ Jednostavno i brzo rezervisanje<br>
            ✔️ Pregled slobodnih mjesta u realnom vremenu<br>
            ✔️ Detaljan pregled menija i aktuelnih dogadjaja<br>
            ✔️ Bezbjednost i pouzdanost</p>

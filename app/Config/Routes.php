@@ -28,7 +28,7 @@ $routes->group('', function(RouteCollection $r){
     $r->get('dashboard',       'Dashboard::index');
     $r->get('restaurants',     'Dashboard::restaurants');
     $r->get('check-reservation/(:num)', 'Dashboard::checkReservation/$1');
-    $r->get('reserve/(:num)',  'Dashboard::reserve/$1');
+    $r->match(['get','post'], 'reserve/(:num)', 'Dashboard::reserve/$1');
     $r->get('reservations',    'Dashboard::reservations');
     $r->get('cancel/(:num)',   'Dashboard::cancel/$1');
     $r->get('menus',           'Dashboard::menus');

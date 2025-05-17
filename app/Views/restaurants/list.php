@@ -1,7 +1,7 @@
 <?= view('templates/header', ['title' => 'Lista restorana']) ?>
 
-<main class="container">
-<h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem;">Lista raspoloživih restorana</h1>
+<main class="container" style="background: #cbd4dc">
+<h1 class="page-title" style="text-align:center; margin:1.5rem 0; font-size:2.5rem; color: #2c3e50">Lista raspoloživih restorana</h1>
 
   <?php if (session()->get('role') === 'admin'): ?>
     <div style="text-align:center; margin-bottom:20px;">

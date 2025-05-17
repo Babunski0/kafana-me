@@ -6,6 +6,14 @@
     <meta charset="UTF-8">
     <title><?= esc($title ?? 'Kafana Projekat') ?></title>
     <link rel="stylesheet" href="<?= base_url('css/site.css') ?>">
+    <style>
+        .container::before,
+        .container::after {
+        display: none !important;
+        background: none   !important;
+        content: none      !important;
+        }
+    </style>
     <script>window.BASE_URL = '<?= base_url() ?>';</script>
 </head>
 <body>

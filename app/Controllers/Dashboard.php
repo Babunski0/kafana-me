@@ -47,43 +47,62 @@ class Dashboard extends BaseController
     //Funkcija za rezervaciju restorana
     public function reserve(int $id)
     {
+        helper('form');
+
         if (! session()->get('isLoggedIn')) {
             return redirect()->to('/login')->with('error', 'Morate se prijaviti.');
         }
 
-        $userId = session()->get('user_id');
-        $resModel = new \App\Models\ReservationModel();
+        $userId    = session()->get('user_id');
+        $restModel = new RestaurantModel();
+        $resModel  = new ReservationModel();
 
-        // Provjera da li već postoji rezervacija
-        $already = $resModel
-            ->where('user_id', $userId)
-            ->where('restaurant_id', $id)
-            ->first();
-        if ($already) {
-            return redirect()->back()
-                            ->with('error', 'Već ste rezervisali ovaj restoran.');
+        // Fetch restaurant
+        $rest = $restModel->find($id);
+        if (! $rest) {
+            return redirect()->back()->with('error', 'Restoran nije pronađen.');
         }
 
-        // Provjera dostupnih mjesta
-        $restModel = new \App\Models\RestaurantModel();
-        $rest      = $restModel->find($id);
-        if (! $rest || $rest['available'] < 1) {
-            return redirect()->back()->with('error', 'Nema slobodnih mesta.');
+        // Prevent duplicate reservation
+        if ($resModel->where('user_id', $userId)->where('restaurant_id', $id)->first()) {
+            return redirect()->to('/reservations')->with('error', 'Već ste rezervisali ovaj restoran.');
         }
 
-        // Smanji available za 1
-        $restModel->update($id, ['available' => $rest['available'] - 1]);
+        if (strtolower($this->request->getMethod()) === 'post') {
+            // Validate inputs
+            $rules = [
+                'people'           => 'required|integer|greater_than[0]|less_than_equal_to[' . $rest['available'] . ']',
+                'meal_type'        => 'required|in_list[dorucak,rucak,vecera]',
+                'reservation_time' => 'required|regex_match[/^(?:[01]\d|2[0-3]):[0-5]\d$/]',
+            ];
+            if (! $this->validate($rules)) {
+                return view('reserve_form', ['validation' => $this->validator, 'restaurant' => $rest]);
+            }
 
-        // Upis rezervacije
-        $resModel->insert([
-            'user_id'          => $userId,
-            'restaurant_id'    => $id,
-            'reservation_date' => date('Y-m-d H:i:s'),
-        ]);
+            // Update availability
+            $people = (int) $this->request->getPost('people');
+            $restModel->update($id, ['available' => $rest['available'] - $people]);
 
-        return redirect()->to('/restaurants')
-                        ->with('success', 'Uspešno rezervisano mesto.');
+            // Insert reservation
+            $resModel->insert([
+                'user_id'          => $userId,
+                'restaurant_id'    => $id,
+                'people'           => $people,
+                'meal_type'        => $this->request->getPost('meal_type'),
+                'reservation_time' => $this->request->getPost('reservation_time'),
+                'reservation_date' => date('Y-m-d H:i:s'),
+            ]);
+
+            return redirect()->to('/reservations')->with('success', 'Rezervacija uspješna!');
+        }
+
+        // Show form
+        return view('reserve_form', ['restaurant' => $rest]);
     }
+
+        
+
+
 
     //Ajax poziv koji provjerava da li korisnik vec ima rezervaciju
     public function checkReservation(int $restaurantId)
@@ -107,14 +126,16 @@ class Dashboard extends BaseController
             return redirect()->to('/login');
         }
 
-        $data['reservations'] = (new ReservationModel())
-            ->select('reservations.id, restaurants.name AS restaurant_name')
+        $reservations = (new ReservationModel())
+            ->select('reservations.id, restaurants.name AS restaurant_name, reservations.people, reservations.meal_type, reservations.reservation_time')
             ->join('restaurants', 'restaurants.id = reservations.restaurant_id')
             ->where('reservations.user_id', session()->get('user_id'))
             ->orderBy('reservations.reservation_date', 'DESC')
             ->findAll();
 
-        return view('reservations', $data);
+        return view('reservations', [
+            'reservations' => $reservations,
+        ]);
     }
 
     //Otkazivanje rezervacije
@@ -138,7 +159,7 @@ class Dashboard extends BaseController
         $restaurant = $restModel->find($res['restaurant_id']);
         if ($restaurant) {
             $restModel->update($restaurant['id'], [
-                'available' => $restaurant['available'] + 1,
+                'available' => $restaurant['available'] + $res['people'],
             ]);
         }
 

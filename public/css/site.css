@@ -1,12 +1,16 @@
+html, body, .site-wrapper {
+  background: #cbd4dc !important;
+}
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Arial', sans-serif;
-  background: #f9f9f9;
+  background: #e0e0e0;
   color: #333;
   line-height: 1.6;
 }
@@ -18,8 +22,16 @@ body {
   --accent:    #e67e22;
   --accent-hi: #d35400;
   --grey:      #aaa;
-  --bg-light:  #fafafa;
+  --bg-light: #e0e0e0;
+  --bg-light-alt: #f2f2f2;
   --shadow:    rgba(0,0,0,0.1);
+}
+
+.dark-container {
+  background: var(--bg-light-alt);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* HEADER I NAV */
@@ -161,11 +173,11 @@ nav a:hover {
 }
 
 /*Univerzalni container sa ukrasima*/
+
 .container {
   position: relative;
   max-width: 1200px;
   margin: auto;
-  padding: 2rem 1rem;
 }
 
 .container::before,
@@ -175,7 +187,6 @@ nav a:hover {
   top: 0;
   width: 80px;
   height: 100%;
-  background: rgba(230,126,34,0.1);
 }
 .container::before { left: -80px; }
 .container::after  { right: -80px; }
@@ -185,7 +196,7 @@ nav a:hover {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity .6s ease-out, transform .6s ease-out;
-  margin-bottom: 4rem;
+  margin-bottom: 0 !important;
 }
 .section.visible {
   opacity: 1;
@@ -304,7 +315,6 @@ footer {
   background: var(--dark);
   color: #bdc3c7;
   text-align: center;
-  padding: 2rem 1rem;
   font-size: .9rem;
 }
 
