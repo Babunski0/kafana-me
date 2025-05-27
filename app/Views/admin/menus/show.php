@@ -17,6 +17,10 @@
         <td><?= number_format($i['price'],2,',','.') ?></td>
         <td><?= esc($i['description']) ?></td>
         <td>
+          <a href="<?= base_url("admin/menus/{$restaurant['id']}/items/{$i['id']}/edit") ?>">
+            Uredi
+          </a>
+          |
           <a href="<?= base_url("admin/menus/{$restaurant['id']}/delete/{$i['id']}") ?>"
              onclick="return confirm('Obriši <?= esc($i['item_name']) ?>?')">
             Obriši

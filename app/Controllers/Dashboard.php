@@ -47,10 +47,20 @@ class Dashboard extends BaseController
     //Funkcija za rezervaciju restorana
     public function reserve(int $id)
     {
-        helper('form');
+        helper(['form', 'url']);
 
+        // Ensure correct timezone
+        date_default_timezone_set('Europe/Podgorica');
+
+        // User must be logged in
         if (! session()->get('isLoggedIn')) {
             return redirect()->to('/login')->with('error', 'Morate se prijaviti.');
+        }
+
+        // Server-side time check: only allow from 08:00
+        $currentHour = (int) date('H');
+        if ($currentHour < 8) {
+            return redirect()->back()->with('error', 'Restoran radi od 08:00. Trenutno nije moguće rezervisati.');
         }
 
         $userId    = session()->get('user_id');
@@ -68,15 +78,20 @@ class Dashboard extends BaseController
             return redirect()->to('/reservations')->with('error', 'Već ste rezervisali ovaj restoran.');
         }
 
-        if (strtolower($this->request->getMethod()) === 'post') {
-            // Validate inputs
+        // Handle form submission
+        if ($this->request->getMethod(true) === 'POST') {
             $rules = [
                 'people'           => 'required|integer|greater_than[0]|less_than_equal_to[' . $rest['available'] . ']',
                 'meal_type'        => 'required|in_list[dorucak,rucak,vecera]',
-                'reservation_time' => 'required|regex_match[/^(?:[01]\d|2[0-3]):[0-5]\d$/]',
+                // Accept times 08:00–23:59
+                'reservation_time' => 'required|regex_match[/^(?:0[8-9]|1\d|2[0-3]):[0-5]\d$/]'
             ];
+
             if (! $this->validate($rules)) {
-                return view('reserve_form', ['validation' => $this->validator, 'restaurant' => $rest]);
+                return view('reserve_form', [
+                    'validation' => $this->validator,
+                    'restaurant' => $rest
+                ]);
             }
 
             // Update availability
@@ -96,9 +111,10 @@ class Dashboard extends BaseController
             return redirect()->to('/reservations')->with('success', 'Rezervacija uspješna!');
         }
 
-        // Show form
+        // Display reservation form
         return view('reserve_form', ['restaurant' => $rest]);
     }
+
 
         
 

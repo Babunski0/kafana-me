@@ -1,4 +1,3 @@
-<!-- Stranica za admin korisnike na kojoj se vide restorani kao i mogucnost brisanja i dodavanja istih -->
 <!DOCTYPE html>
 <html lang="sr">
 <head>
@@ -18,31 +17,45 @@
   <?php endif; ?>
 
   <p>
-    <a href="<?= base_url('admin/add') ?>" class="button">+ Dodaj novi restoran</a>
-    <a href="<?= base_url('dashboard') ?>" style="margin-left:20px;">← Nazad na dashboard</a>
+    <a href="<?= site_url('admin/add') ?>" class="button">+ Dodaj novi restoran</a>
+    <a href="<?= site_url('dashboard') ?>" style="margin-left:20px;">← Nazad na dashboard</a>
   </p>
 
   <table>
-    <thead><tr>
-      <th>#</th><th>Naziv</th><th>Kuhinja</th><th>Kapacitet</th><th>Slobodna mjesta</th><th>Akcije</th>
-    </tr></thead>
-    <tbody>
-    <?php foreach($restaurants as $r): ?>
+    <thead>
       <tr>
-        <td><?= $r['id'] ?></td>
-        <td><?= esc($r['name']) ?></td>
-        <td><?= esc($r['cuisine']) ?></td>
-        <td><?= $r['capacity'] ?></td>
-        <td><?= $r['available'] ?></td>
-        <td>
-          <a href="<?= base_url('admin/delete/'.$r['id']) ?>"
-             class="button danger"
-             onclick="return confirm('Obriši restoran <?= esc($r['name']) ?>?');">
-            Obriši
-          </a>
-        </td>
+        <th>#</th>
+        <th>Naziv</th>
+        <th>Kuhinja</th>
+        <th>Kapacitet</th>
+        <th>Slobodna mjesta</th>
+        <th>Akcije</th>
       </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+      <?php foreach($restaurants as $r): ?>
+        <tr>
+          <td><?= $r['id'] ?></td>
+          <td><?= esc($r['name']) ?></td>
+          <td><?= esc($r['cuisine']) ?></td>
+          <td><?= $r['capacity'] ?></td>
+          <td><?= $r['available'] ?></td>
+          <td>
+            <!-- Uredi dugme -->
+            <a href="<?= site_url('admin/restaurants/' . $r['id'] . '/edit') ?>"
+               class="button"
+               style="margin-right:8px;">
+              Uredi
+            </a>
+            <!-- Obriši dugme -->
+            <a href="<?= site_url('admin/delete/' . $r['id']) ?>"
+               class="button danger"
+               onclick="return confirm('Obriši restoran <?= esc($r['name']) ?>?');">
+              Obriši
+            </a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
 </body>

@@ -10,7 +10,7 @@
 
   <!-- Grupisanje stavki menija po restoranima i kategorijama radi urednijeg prikaza -->
   <?php 
-    $order = ['Hladna predjela', 'Topla predjela', 'Ćorbe', 'Glavna jela', 'Dezerti'];
+    $order = ['Hladna predjela', 'Topla predjela', 'Corbe', 'Glavna jela', 'Dezerti'];
     foreach ($menusByRestaurant as $mr):
       $rest  = $mr['restaurant'];
       $items = $mr['items'];
@@ -35,7 +35,7 @@
         <?= esc($rest['name']) ?>
       </summary>
     <!-- Prikaz svih stavki menija za dati restoran, ukoliko nema stavki ispisuje se poruka -->
-      <div class="categories" style="padding:1rem 1.5rem; margin: 0 10%;">
+      <div class="categories" style="background: #1C2938; padding:1rem 1.5rem; margin: 0 10%; border-radius: 1rem; margin-top: 1rem;">
         <?php if (empty($grouped)): ?>
           <em style="color: #2c3e50;">Ovaj restoran još nema stavki menija.</em>
         <?php else: ?>
@@ -44,7 +44,7 @@
               <h2 style="
                 margin:1.5rem 0 .75rem;
                 font-size:1.2rem;
-                color: #2c3e50;
+                color:rgb(255, 255, 255);
                 border-bottom:1px solid #ddd;
                 padding-bottom:4px;
               "><?= esc($cat) ?></h2>

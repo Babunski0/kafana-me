@@ -72,6 +72,52 @@ class AdminMenus extends Controller
                          ->with('success','Stavka je dodata.');
     }
 
+
+    public function editItem(int $restId, int $itemId)
+    {
+        // Učitaj restoran i stavku
+        $restaurant = (new RestaurantModel())->findOrFail($restId);
+        $item       = (new MenuModel())->findOrFail($itemId);
+
+        // Redoslijed kategorija kao u show()
+        $order = ['Hladna predjela', 'Topla predjela', 'Corbe', 'Glavna jela', 'Dezerti'];
+
+        return view('admin/menus/editItem', [
+            'restaurant' => $restaurant,
+            'item'       => $item,
+            'order'      => $order,
+        ]);
+    }
+
+    //Izmjena stavke menija u bazi na osnovu ID-jeva restorana i stavke
+    public function updateItem(int $restId, int $itemId)
+    {
+        $rules = [
+          'item_name'   => 'required',
+          'price'       => 'required|decimal',
+          'category'    => 'required',
+        ];
+        if (! $this->validate($rules)) {
+            return redirect()->back()
+                             ->withInput()
+                             ->with('errors', $this->validator->getErrors());
+        }
+
+        // Update
+        (new MenuModel())->update($itemId, [
+          'item_name'   => $this->request->getPost('item_name'),
+          'price'       => $this->request->getPost('price'),
+          'description' => $this->request->getPost('description'),
+          'category'    => $this->request->getPost('category'),
+        ]);
+
+        return redirect()->to("/admin/menus/{$restId}")
+                         ->with('success','Stavka je ažurirana.');
+    }
+
+
+
+
     //Brise jednu stavku menija na osnovu njenog ID-a
     public function deleteItem(int $restId, int $itemId)
     {

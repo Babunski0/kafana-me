@@ -15,7 +15,7 @@
   <input type="text" name="price"     value="<?= old('price') ?>">
   <label>Kategorija</label>
   <select name="category">
-    <?php foreach(['Hladna predjela','Topla predjela','Čorbe','Glavna jela','Dezerti'] as $cat): ?>
+    <?php foreach(['Hladna predjela','Topla predjela','Corbe','Glavna jela','Dezerti'] as $cat): ?>
       <option <?= old('category')===$cat?'selected':'' ?>><?= esc($cat) ?></option>
     <?php endforeach; ?>
   </select>

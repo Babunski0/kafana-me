@@ -37,12 +37,19 @@
 <nav>
     <div class="nav-inner">
         <a href="<?= base_url('/') ?>">Početna</a>
-        <a href="<?= base_url('restaurants') ?>">Lista restorana</a>
+
         <?php if (session()->get('role') === 'admin'): ?>
-          <a href="<?= base_url('admin/menus') ?>">Meniji</a>
+            <a href="<?= site_url('admin') ?>">Lista restorana</a>
         <?php else: ?>
-          <a href="<?= base_url('menus') ?>">Meniji</a>
+            <a href="<?= site_url('restaurants') ?>">Lista restorana</a>
         <?php endif; ?>
+
+        <?php if (session()->get('role') === 'admin'): ?>
+            <a href="<?= site_url('admin/menus') ?>">Meniji</a>
+        <?php else: ?>
+            <a href="<?= site_url('menus') ?>">Meniji</a>
+        <?php endif; ?>
+
         <a href="<?= base_url('reservations') ?>">Moje rezervacije</a>
         <a href="<?= base_url('logout') ?>">Odjavi se</a>
     </div>

@@ -25,7 +25,7 @@
 
     <!-- Sekcija koja sadrzi 3 restorana (poslednja dodata) -->
     <div class="section">
-        <h2 style="color: #34495e">Preporučeni restorani</h2>
+        <h2 style="color: #34495e; padding-top: 2em;">Preporučeni restorani</h2>
         <div class="restaurant-list">
             <?php if (empty($restaurants)): ?>
               <p>Još nema restorana za preporuku.</p>
@@ -36,7 +36,7 @@
                 <div class="info">
                   <h3><?= esc($r['name']) ?></h3>
                   <p><strong>Kuhinja:</strong> <?= esc($r['cuisine']) ?></p>
-                  <p><strong>Slobodnih mesta:</strong> <?= $r['available'] ?></p>
+                  <p><strong>Slobodnih mjesta:</strong> <?= $r['available'] ?></p>
                 </div>
                 <?php if ($r['available'] > 0): ?>
                   <a 
@@ -56,7 +56,7 @@
 
     <!-- Sekcija za aktuelne dogadjaje -->
     <div class="section events">
-  <h2 style="color: #34495e">Aktuelni događaji</h2>
+  <h2 style="color: #34495e; padding-top: 2em;">Aktuelni događaji</h2>
   <div class="event-list">
     <div class="event-card">
       <img src="<?= base_url('images/svirka_uzivo.jpg') ?>" alt="Ambijent 1">
@@ -88,7 +88,7 @@
 
     <!--Sekcija zasto da koristi neko ovaj sajt -->
     <div class="section">
-        <h2 style="color: #34495e">Zašto baš mi?</h2>
+        <h2 style="color: #34495e; padding-top: 2em;">Zašto baš mi?</h2>
         <p style="color: #5d6d7e">✔️ Jednostavno i brzo rezervisanje<br>
            ✔️ Pregled slobodnih mjesta u realnom vremenu<br>
            ✔️ Detaljan pregled menija i aktuelnih dogadjaja<br>

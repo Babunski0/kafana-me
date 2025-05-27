@@ -55,28 +55,33 @@
     <?php endif; ?>
 
     <form action="<?= base_url('admin/save') ?>"
-          method="post"
-          enctype="multipart/form-data">
-        <?= csrf_field() ?>
+      method="post"
+      enctype="multipart/form-data">
+    <?= csrf_field() ?>
 
-        <label for="name">Naziv restorana</label>
-        <input type="text" id="name" name="name"
-               value="<?= old('name') ?>" required>
+    <label for="name">Naziv restorana</label>
+    <input type="text" id="name" name="name"
+           value="<?= old('name') ?>" required>
 
-        <label for="cuisine">Tip kuhinje</label>
-        <input type="text" id="cuisine" name="cuisine"
-               value="<?= old('cuisine') ?>" required>
+    <label for="city">Grad</label>
+    <input type="text" id="city" name="city"
+           value="<?= old('city') ?>" required>
 
-        <label for="capacity">Ukupan kapacitet</label>
-        <input type="number" id="capacity" name="capacity"
-               value="<?= old('capacity') ?>" min="1" required>
+    <label for="cuisine">Tip kuhinje</label>
+    <input type="text" id="cuisine" name="cuisine"
+           value="<?= old('cuisine') ?>" required>
 
-        <label for="image">Slika restorana (jpg/png, max 2MB)</label>
-        <input type="file" id="image" name="image"
-               accept="image/jpeg,image/png" required>
+    <label for="capacity">Ukupan kapacitet</label>
+    <input type="number" id="capacity" name="capacity"
+           value="<?= old('capacity') ?>" min="1" required>
 
-        <button type="submit">Sačuvaj</button>
-    </form>
+    <label for="image">Slika restorana (jpg/png, max 2MB)</label>
+    <input type="file" id="image" name="image"
+           accept="image/jpeg,image/png" required>
+
+    <button type="submit">Sačuvaj</button>
+</form>
+
 
     <p style="text-align:center; margin-top:20px;">
       <a href="<?= base_url('admin') ?>">← Nazad na listu restorana</a>

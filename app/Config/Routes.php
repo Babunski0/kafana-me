@@ -42,13 +42,18 @@ $routes->group('admin', function(RouteCollection $r){
     $r->get(  '',              'Admin::index');
     $r->get(  'add',           'Admin::add');
     $r->post( 'save',          'Admin::save');
-    $r->get(  'delete/(:num)', 'Admin::delete/$1');
+    $r->get(   'restaurants/(:num)/edit',       'Admin::edit/$1');
+    $r->post(  'restaurants/(:num)/update',     'Admin::update/$1');
+    $r->get(   'delete/(:num)', 'Admin::delete/$1');
 
     // Upravljanje menijima
     $r->get(  'menus',                     'AdminMenus::index');
     $r->get(  'menus/(:num)',              'AdminMenus::show/$1');
     $r->get(  'menus/(:num)/add',          'AdminMenus::addItem/$1');
     $r->post( 'menus/(:num)/add',          'AdminMenus::saveItem/$1');
+
+    $r->get('menus/(:num)/items/(:num)/edit',   'AdminMenus::editItem/$1/$2');
+    $r->post('menus/(:num)/items/(:num)/update', 'AdminMenus::updateItem/$1/$2');
     
     $r->get(  'menus/(:num)/delete/(:num)', 'AdminMenus::deleteItem/$1/$2');
 });
