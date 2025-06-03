@@ -11,52 +11,57 @@
   </style>
 </head>
 <body>
-  <h1>Admin Panel</h1>
-  <?php if(session()->getFlashdata('success')): ?>
-    <p style="color:green"><?= esc(session()->getFlashdata('success')) ?></p>
-  <?php endif; ?>
+  <?= view('templates/header', ['title' => 'Admin panel – lista restorana']) ?>
 
-  <p>
-    <a href="<?= site_url('admin/add') ?>" class="button">+ Dodaj novi restoran</a>
-    <a href="<?= site_url('dashboard') ?>" style="margin-left:20px;">← Nazad na dashboard</a>
-  </p>
+  <main class="container" style="background: #cbd4dc; margin-bottom: 2rem; margin-top: 2rem;">
+    <h1>Admin Panel</h1>
+    <?php if(session()->getFlashdata('success')): ?>
+      <p style="color:green"><?= esc(session()->getFlashdata('success')) ?></p>
+    <?php endif; ?>
 
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Naziv</th>
-        <th>Kuhinja</th>
-        <th>Kapacitet</th>
-        <th>Slobodna mjesta</th>
-        <th>Akcije</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach($restaurants as $r): ?>
+    <p>
+      <a href="<?= site_url('admin/add') ?>" class="button" style="margin: 1rem;">+ Dodaj novi restoran</a>
+      <a href="<?= site_url('dashboard') ?>" class="button">← Nazad na dashboard</a>
+    </p>
+
+    <table>
+      <thead>
         <tr>
-          <td><?= $r['id'] ?></td>
-          <td><?= esc($r['name']) ?></td>
-          <td><?= esc($r['cuisine']) ?></td>
-          <td><?= $r['capacity'] ?></td>
-          <td><?= $r['available'] ?></td>
-          <td>
-            <!-- Uredi dugme -->
-            <a href="<?= site_url('admin/restaurants/' . $r['id'] . '/edit') ?>"
-               class="button"
-               style="margin-right:8px;">
-              Uredi
-            </a>
-            <!-- Obriši dugme -->
-            <a href="<?= site_url('admin/delete/' . $r['id']) ?>"
-               class="button danger"
-               onclick="return confirm('Obriši restoran <?= esc($r['name']) ?>?');">
-              Obriši
-            </a>
-          </td>
+          <th>#</th>
+          <th>Naziv</th>
+          <th>Kuhinja</th>
+          <th>Kapacitet</th>
+          <th>Slobodna mjesta</th>
+          <th>Akcije</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <?php foreach($restaurants as $r): ?>
+          <tr>
+            <td><?= $r['id'] ?></td>
+            <td><?= esc($r['name']) ?></td>
+            <td><?= esc($r['cuisine']) ?></td>
+            <td><?= $r['capacity'] ?></td>
+            <td><?= $r['available'] ?></td>
+            <td>
+              <!-- Uredi dugme -->
+              <a href="<?= site_url('admin/restaurants/' . $r['id'] . '/edit') ?>"
+                class="button"
+                style="margin-right:8px;">
+                Uredi
+              </a>
+              <!-- Obriši dugme -->
+              <a href="<?= site_url('admin/delete/' . $r['id']) ?>"
+                class="button danger"
+                onclick="return confirm('Obriši restoran <?= esc($r['name']) ?>?');">
+                Obriši
+              </a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </main>
+  <?= view('templates/footer') ?>
 </body>
 </html>
